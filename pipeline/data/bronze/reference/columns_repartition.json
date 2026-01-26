@@ -2,7 +2,7 @@
     "metrics_bdv" : 
         [
             "bureau_vote", "type_election", "annee", 
-            "tour", "commune", "canton", 
+            "tour", "commune",
             "nb_inscrits", "nb_abstentions", "nb_votants", 
             "nb_emargements", "nb_blanc", "nb_nuls"
         ], 
@@ -10,24 +10,6 @@
     "candidats_voix" : 
         [
         "bureau_vote", "code_liste_1", "voix_liste_1", "code_liste_2",
-        "voix_liste_2", "code_liste_3", "voix_liste_3", "code_liste_4",
-        "voix_liste_4", "code_liste_5", "voix_liste_5", "code_liste_6",
-        "voix_liste_6", "code_liste_7", "voix_liste_7", "code_liste_8",
-        "voix_liste_8", "code_liste_9", "voix_liste_9", "code_liste_10",
-        "voix_liste_10", "code_liste_11", "voix_liste_11", "code_liste_12",
-        "voix_liste_12", "code_liste_13", "voix_liste_13", "code_liste_14",
-        "voix_liste_14", "code_liste_15", "voix_liste_15", "code_liste_16",
-        "voix_liste_16", "code_liste_17", "voix_liste_17", "code_liste_18",
-        "voix_liste_18", "code_liste_19", "voix_liste_19", "code_liste_20",
-        "voix_liste_20", "code_liste_21", "voix_liste_21", "code_liste_22",
-        "voix_liste_22", "code_liste_23", "voix_liste_23", "code_liste_24",
-        "voix_liste_24", "code_liste_25", "voix_liste_25", "code_liste_26",
-        "voix_liste_26", "code_liste_27", "voix_liste_27", "code_liste_28",
-        "voix_liste_28", "code_liste_29", "voix_liste_29", "code_liste_30",
-        "voix_liste_30", "code_liste_31", "voix_liste_31", "code_liste_32",
-        "voix_liste_32", "code_liste_33", "voix_liste_33", "code_liste_34",
-        "voix_liste_34", "code_liste_35", "voix_liste_35", "code_liste_36",
-        "voix_liste_36", "code_liste_37", "voix_liste_37", "code_liste_38",
-        "voix_liste_38"
+        "voix_liste_2", "code_liste_3", "voix_liste_3", "code_liste_4", "voix_liste_4"
         ]
 }
