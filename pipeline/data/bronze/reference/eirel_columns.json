@@ -1,0 +1,26 @@
+{
+  "fixed_columns": {
+    "0": "num_ligne",
+    "1": "type_election",
+    "2": "annee",
+    "3": "tour",
+    "4": "departement",
+    "5": "commune",
+    "6": "bureau_vote",
+    "7": "circonscription",
+    "8": "canton",
+    "9": "indicateur",
+    "10": "nb_inscrits",
+    "11": "nb_abstentions",
+    "12": "nb_votants",
+    "13": "nb_emargements",
+    "14": "nb_blanc",
+    "15": "nb_nuls",
+    "16": "nb_exprimes",
+    "17": "nb_listes"
+  },
+  "dynamic_columns": {
+    "start_index": 18,
+    "pattern": ["code_liste_{i}", "voix_liste_{i}"]
+  }
+}
