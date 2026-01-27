@@ -1,8 +1,19 @@
 import json
+import logging
 import pandas as pd
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    filename="log_recuperation_election.log", 
+    encoding="utf-8", 
+    level=logging.INFO, 
+    format="%(asctime)s %(levelname)s %(message)s",
+    datefmt='%d/%m/%Y %H:%M:%S'
+)
 
 # Chargement des données avec les bonnes colonnes
 def load_eirel(filepath, config_path: str='pipeline/data/bronze/reference/eirel_columns.json'):
+    logging.info("Récupération des données EIREL...")
     with open(config_path, 'r') as f:
         config = json.load(f)
 
@@ -18,12 +29,13 @@ def load_eirel(filepath, config_path: str='pipeline/data/bronze/reference/eirel_
 
     data = pd.read_csv(filepath, sep=";", skiprows=2, header=None)
     data.rename(columns=colonnes, inplace=True)
+    logging.info("...")
 
     return data
 
 # Chargement des donnée 
 def process_eirel(
-    eirel_path: str = "pipeline/data/bronze/eirel/Eirel-testMunicipales-nov2025-1erTour.txt", 
+    eirel_path: str = "pipeline/data/bronze/eirel/TEST_EIREL_MEUDON_17122025.txt", 
     columns_repartition: str ="pipeline/data/bronze/reference/columns_repartition.json"):
 
     data = load_eirel(eirel_path)
@@ -63,5 +75,7 @@ def enrich_eirel():
 
 
 if __name__ == "__main__":
+    logger.info("=== START PIPELINE ===")
     process_eirel()
     enrich_eirel()
+    logger.info("=== END PIPELINE ===")
