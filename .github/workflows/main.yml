@@ -16,7 +16,10 @@ on:
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ./pipeline
+        
     steps:
       # 1. Récupérer le code du repo
       - name: Checkout repository
@@ -26,7 +29,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: 'pipeline/.python-version'  # Utilise la version dans votre fichier
+          python-version-file: '.python-version'  # Utilise la version dans votre fichier
       
       # 3. Installer uv (gestionnaire de paquets ultra-rapide)
       - name: Install uv
