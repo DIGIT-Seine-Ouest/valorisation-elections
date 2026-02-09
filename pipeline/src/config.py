@@ -19,7 +19,7 @@ def get_api_key() -> str:
     Raises:
         ValueError: Si l'API key n'est pas définie
     """
-    api_key = os.getenv('api_key')
+    api_key = os.getenv('API_KEY')
     
     if not api_key:
         raise ValueError(
