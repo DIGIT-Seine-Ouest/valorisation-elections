@@ -16,52 +16,65 @@ on:
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
+
+    # 👇 C'est ici que la magie opère. 
+    # On définit le dossier de travail par défaut pour toutes les commandes 'run'.
     defaults:
       run:
-        working-directory: ./pipeline
-        
+        working-directory: ./pipeline  # ⚠️ Assurez-vous que c'est bien le nom de votre dossier
+
     steps:
-      # 1. Récupérer le code du repo
+      # 1. Checkout (se fait toujours à la racine par défaut, c'est normal)
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      # 2. Installer Python
+
+      # 2. Setup Python
+      # Note : Les étapes "uses" ne respectent pas le "working-directory" par défaut.
+      # Il faut donc garder le chemin complet ici.
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: '.python-version'  # Utilise la version dans votre fichier
-      
-      # 3. Installer uv (gestionnaire de paquets ultra-rapide)
+          python-version-file: 'pipeline/.python-version' 
+
+      # 3. Setup uv
       - name: Install uv
         uses: astral-sh/setup-uv@v4
         with:
           enable-cache: true
-      
-      # 4. Installer les dépendances avec uv
+          # L'option cache-dependency-glob aide le cache à savoir quand changer
+          cache-dependency-glob: "pipeline/uv.lock"
+
+      # 4. Install dependencies
+      # GRÂCE AU DEFAULT CI-DESSUS, cette commande s'exécute maintenant DANS ./pipeline
+      # Elle trouvera donc votre pyproject.toml !
       - name: Install dependencies
         run: uv sync
-      
-      # 5. Exécuter la pipeline
+
+      # 5. Run pipeline
+      # Idem, s'exécute dans ./pipeline. Plus besoin de préfixer le fichier.
       - name: Run pipeline
         env:
-          API_KEY: ${{ secrets.API_KEY }}  # Variable d'environnement secrète
+          API_KEY: ${{ secrets.API_KEY }}
         run: uv run pipeline.py
-      
-      # 6. Uploader les logs en cas d'erreur (optionnel)
+
+      # 6. Upload logs (optionnel)
       - name: Upload logs on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: pipeline-logs
-          path: logs/
-          retention-days: 7
-      
-      # 7. Commit et push des nouvelles données (si vous voulez les versionner)
+          path: pipeline/logs/ # Attention : pour l'upload, on repart souvent de la racine, précisez le chemin complet par sécurité
+
+      # 7. Git commit
+      # Attention ici : comme on est "dans" le dossier pipeline, git add data/ cherchera pipeline/data/
       - name: Commit and push data
         if: success()
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Update data - $(date +'%Y-%m-%d %H:%M')" && git push)
           
+          # On ajoute les données (supposant que le script génère les data DANS le dossier pipeline)
+          git add data/
+          
+          # Commit et push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Update data - $(date +'%Y-%m-%d %H:%M')" && git push)
