@@ -73,8 +73,14 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # On ajoute les données (supposant que le script génère les data DANS le dossier pipeline)
+          # On ajoute seulement le dossier data
           git add data/
           
-          # Commit et push
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Update data - $(date +'%Y-%m-%d %H:%M')" && git push)
+          # On vérifie s'il y a des changements PRÊTS à être commités (staged)
+          if ! git diff --cached --quiet; then
+            echo "Changements détectés dans data/, on commit..."
+            git commit -m "🔄 Update data - $(date +'%Y-%m-%d %H:%M')"
+            git push
+          else
+            echo "Aucun changement dans data/, on ne fait rien."
+          fi
