@@ -1,2 +1,47 @@
-.vscode
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environnement virtuel
+.venv/
+venv/
+ENV/
+env/
+
+# Variables d'environnement (IMPORTANT!)
 .env
+
+# uv
+.uv/
+
+# Logs (optionnel - décommentez si vous ne voulez pas versionner les logs)
+# logs/
+
+# Données brutes (optionnel - décommentez si vous ne voulez pas versionner les données)
+# data/bronze/
+# data/silver/
+# data/gold/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
