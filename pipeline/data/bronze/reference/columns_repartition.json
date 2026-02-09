@@ -9,7 +9,8 @@
 
     "candidats_voix" : 
         [
-        "bureau_vote", "code_liste_1", "voix_liste_1", "code_liste_2",
-        "voix_liste_2", "code_liste_3", "voix_liste_3", "code_liste_4", "voix_liste_4"
+        "bureau_vote", 
+        "voix_liste_1", "voix_liste_2", 
+        "voix_liste_3","voix_liste_4"
         ]
 }
