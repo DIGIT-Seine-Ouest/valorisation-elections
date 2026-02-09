@@ -1,0 +1,64 @@
+name: Pipeline EIREL - Rafraîchissement données
+
+on:
+  # Exécution automatique toutes les 15 minutes
+  schedule:
+    - cron: '*/15 * * * *'  # Toutes les 15 minutes
+  
+  # Permet aussi un déclenchement manuel depuis GitHub
+  workflow_dispatch:
+  
+  # Optionnel : exécution à chaque push sur main
+  push:
+    branches:
+      - main
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Récupérer le code du repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # 2. Installer Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'  # Utilise la version dans votre fichier
+      
+      # 3. Installer uv (gestionnaire de paquets ultra-rapide)
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+      
+      # 4. Installer les dépendances avec uv
+      - name: Install dependencies
+        run: uv sync
+      
+      # 5. Exécuter la pipeline
+      - name: Run pipeline
+        env:
+          API_KEY: ${{ secrets.API_KEY }}  # Variable d'environnement secrète
+        run: uv run pipeline.py
+      
+      # 6. Uploader les logs en cas d'erreur (optionnel)
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-logs
+          path: logs/
+          retention-days: 7
+      
+      # 7. Commit et push des nouvelles données (si vous voulez les versionner)
+      - name: Commit and push data
+        if: success()
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Update data - $(date +'%Y-%m-%d %H:%M')" && git push)
+          
