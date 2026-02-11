@@ -1,9 +1,13 @@
-<ods-dataset-context context="resultatsmunicipales2026" resultatsmunicipales2026-dataset="resultats-municipales-2026">
+<ods-dataset-context context="resultatsmunicipales2026, bureauxdevoteelectoraux2026, limitedecommune" 
+    resultatsmunicipales2026-dataset="resultats-municipales-2026"
+    resultatsmunicipales2026-parameters="{'sort':'nom_quartier'}"
+    bureauxdevoteelectoraux2026-dataset="bureaux-de-vote-electoraux-2026" 
+    bureauxdevoteelectoraux2026-parameters="{'disjunctive.nom_bureau':true,'disjunctive.num_bureau':true}" 
+    limitedecommune-dataset="limite-de-commune">
     <section class="container-fluid">
         <%- include("components/header.ejs") %>
         <%- include("components/bdv-panel.ejs") %>
+        <%- include("components/bdv-map.ejs") %>
+        <%- include("components/result-display") %>
     </section>
-
-
-
 </ods-dataset-context>

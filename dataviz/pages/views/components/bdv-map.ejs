@@ -1,0 +1,29 @@
+<div class="content-maps">
+    <ods-dataset-context context="bureauxdevoteelectoraux2026,limitedecommune" bureauxdevoteelectoraux2026-dataset="bureaux-de-vote-electoraux-2026" bureauxdevoteelectoraux2026-parameters="{'disjunctive.nom_bureau':true,'disjunctive.num_bureau':true}" limitedecommune-dataset="limite-de-commune">
+        <ods-map no-refit="false" scroll-wheel-zoom="false" basemap="jawg.light">
+                <ods-map-layer 
+                    context="bureauxdevoteelectoraux2026" 
+                    color="#19630A" 
+                    picto="dot" 
+                    show-marker="false" 
+                    refine-on-click-context="ctxrefine"
+                    display="auto"></ods-map-layer>
+    
+                <ods-map-layer 
+                    context="limitedecommune" 
+                    color="#AAAAAA" 
+                    picto="ods-circle" 
+                    show-marker="true" 
+                    display="auto" 
+                    shape-opacity="0.3" 
+                    point-opacity="1" 
+                    border-color="#19630A"
+                    border-opacity="1" 
+                    border-size="3" 
+                    border-pattern="solid" 
+                    caption-picto-color="#E5E5E5" 
+                    size="4" size-min="3" size-max="5" size-function="linear"></ods-map-layer>
+        </ods-map>
+    
+    </ods-dataset-context>
+</div>
