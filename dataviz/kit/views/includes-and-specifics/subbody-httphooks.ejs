@@ -1,0 +1,70 @@
+<!-- HTTP Hooks to inject API KEY in ODS API queries -->
+<script type="text/javascript">
+
+    <% apikeys && apikeys.forEach(function(apikey) { %>
+    if ("<%= apikey.apikey %>" && "<%= apikey.apikey %>" !== "APIKEY HERE") {
+        xhook.before(function (request) {
+
+            if ("<%= defaultdomain %>" && "<%= defaultdomain %>" !== "DEFAULT DOMAIN URL") {
+                if (request.url.startsWith("/api"))
+                    request.url = "<%= defaultdomain %>" + request.url;
+            }
+
+            if (request.url.match(/<%= apikey.domain %>/) && request.url.match(/api/))
+                request.url = request.url + "&apikey=" + "<%= apikey.apikey %>";
+
+            return;
+        });
+    }
+    <% }); %>
+
+    if (!"<%= apikeys %>" && "<%= defaultdomain %>" && "<%= defaultdomain %>" !== "DEFAULT DOMAIN URL") {
+        xhook.before(function (request) {
+
+            if (request.url.startsWith("/api"))
+                request.url = "<%= defaultdomain %>" + request.url;
+
+            return;
+        });
+    }
+
+</script>
+
+<!-- Anchor link overide to deal with basepath, based on DOM changes -->
+<script type="text/javascript">
+    let basePath = "<%= basePath %>"
+
+    var debounceTimeout;
+
+    var debounce = function (fn, args) {
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);
+        }
+        debounceTimeout = setTimeout(fn, 200, args);
+    };
+
+    var patchLinks = function () {
+        for (var i = 0; i < document.links.length; i += 1) {
+            link = document.links.item(i)
+            if (link.href.startsWith(window.location.origin)) {
+                if (link.attributes.href.value &&
+                    link.attributes.href.value.startsWith('/') &&
+                    !link.attributes.href.value.startsWith(basePath)) {
+                    link.attributes.href.value = basePath + link.attributes.href.value
+                    console.log(link.attributes.href.value + " patched with basePath " + basePath)
+                }
+            }
+        }
+    }
+
+    if (basePath && basePath.length > 0) {
+        console.log("Activation du MutationObserver pour surcharger les liens avec le basePath " + basePath)
+        MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+        var observer = new MutationObserver(function (mutations, observer) {
+            debounce(patchLinks)
+        });
+
+        observer.observe(document, {subtree: true, attributes: true});
+    }
+</script>

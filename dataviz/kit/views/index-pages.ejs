@@ -1,0 +1,33 @@
+<!--
+
+    ######################################################
+
+              THIS IS YOUR INDEX-*** PAGE MODEL
+
+    ######################################################
+
+    It has the correct structure to include all required scripts and css resources
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('includes-and-specifics/headers.ejs'); -%>
+
+    <link rel="stylesheet" type="text/css" href="/index-pages.css" />
+    <link rel="stylesheet" type="text/css" href="/<%= slug %>.css" />
+</head>
+
+<body>
+
+<div ng-cloak ng-app="ods-widgets">
+
+    <%- include('../../pages/views/' + slug + '.ejs'); -%>
+
+</div>
+
+<%- include('includes-and-specifics/subbody.ejs'); -%>
+
+</body>
+
+</html>

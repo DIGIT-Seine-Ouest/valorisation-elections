@@ -1,0 +1,11 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.8.2/angular-locale_fr.min.js"></script>
+<script type="text/javascript" src="https://static.opendatasoft.com/ods-widgets/latest-v2/ods-widgets.js"></script>
+
+<% jsscripts && jsscripts.forEach(function(file) { %>
+
+    <script src="/<%= file %>"></script>
+
+<% }) %>

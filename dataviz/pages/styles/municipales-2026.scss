@@ -1,0 +1,41 @@
+:root {
+    --green-primary: rgb(101, 167, 11);
+    --green-dark: rgb(71, 125, 40);
+    --text-dark: #2c3e50;
+    --bg-grey: #f5f5f5;
+    --white: #ffffff;
+    --border: #dddddd;
+    --col-0: rgb(101, 167, 11);
+    --col-1: #00b894;
+    --col-2: #f1c40f;
+    --col-3: #0984e3;
+    --col-4: #e84393;
+    --col-5: #6c5ce7;
+    --col-6: #636e72;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-header {
+    // Paramétrage de la box
+    width: 100%;
+    background: var(--white);
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    z-index: 20;
+    border-top: 4px solid var(--green-dark);
+    flex-shrink: 0;
+
+    // Paramétrage du titre
+    .app-title {
+        color: var(--green-primary);
+    }
+}

@@ -1,0 +1,43 @@
+<!--
+
+    ######################################################
+
+              THIS IS YOUR KIT WELCOME PAGE
+
+    ######################################################
+
+    Keep it has a starting point when your $> gulp server
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('includes-and-specifics/headers.ejs'); -%>
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+</head>
+
+<body>
+
+<div ng-cloak ng-app="ods-widgets">
+
+    <h2>Welcome to the ODS local dev. kit</h2>
+
+    Available page list (according to your settings) :
+    <ul class="page-list">
+    <% pages && pages.forEach(function(page) { %>
+
+        <li class="page-item">
+            <a class="ods-button"
+               href="<%= basePath %>/pages/<%= page %>"><%= page %></a>
+        </li>
+
+    <% }) %>
+    </ul>
+
+</div>
+
+<%- include('includes-and-specifics/subbody.ejs'); -%>
+
+</body>
+
+</html>

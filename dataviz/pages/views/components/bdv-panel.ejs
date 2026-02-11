@@ -1,0 +1,30 @@
+<div class="sidebar">
+    <!-- SCRIPT SANS AFFICHAGE -->
+    <span ng-init="bdvCode = []; bdvNom = []"></span>
+    <!-- Récupération des bdvCode et bdvNom uniques -->
+    <span ods-results="items"
+            ods-results-context="resultatsmunicipales2026"
+            ods-results-max="100">
+        <!-- Boucler sur le Dataset -->
+        <span ng-repeat="item in items">
+            <!-- Intégrer les données uniques dans bdvCode -->
+            <span ng-if="bdvCode.indexOf(item.fields.bureau_vote) === -1">
+                {{ bdvCode.push(item.fields.bureau_vote) && item.fields.bureau_vote }}
+            </span>
+            <!-- Intégrer les données uniques dans dbvNom -->
+            <span ng-if="bdvNom.indexOf(item.fields.nom_bureau) === -1">
+                {{ bdvNom.push(item.fields.nom_bureau) && item.fields.nom_bureau }}
+            </span>
+        </span>
+    </span>
+    <!-- FIN SCRIPT -->
+
+    <div class="filter-title">Liste des lieux de vote</div>
+    <!-- Lister les lieux de votes -->
+     <ul class="filter-list">
+        <li ng-repeat="code in bdvCode">
+            {{ code }} {{ bdvNom[$index] }}
+        </li>
+    </ul>
+
+</div>

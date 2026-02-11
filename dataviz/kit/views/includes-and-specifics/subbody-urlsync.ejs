@@ -1,0 +1,21 @@
+<!-- urlsync patch -->
+<script type="text/javascript">
+    angular.module('ods-widgets').config(function ($locationProvider) {
+        // https://stackoverflow.com/a/38772825
+        if (window.history && window.history.pushState) {
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false,
+                rewriteLinks: false
+            });
+            $locationProvider.hashPrefix('!');
+        }
+        else {
+            $locationProvider.html5Mode(false);
+        }
+    });
+
+    angular.module('ods-widgets').config(function($sceProvider) {
+        $sceProvider.enabled(false);
+    });
+</script>

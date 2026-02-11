@@ -1,0 +1,19 @@
+/*
+IMPORTANT : If you want to develop a standalone page and get rid of Opendatasoft stylesheets,
+ie. you want to develop a page that WILL NOT BE hosted by Opendatasoft, please comment the three next lines
+*/
+@import "ods-portal/internal-stylesheets/normalize.scss";
+@import "ods-portal/internal-stylesheets/ods.scss";
+
+body {
+  margin: 20px 30px;
+}
+
+.page-list {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+}
+.page-item {
+  margin: 0px 3px;
+}

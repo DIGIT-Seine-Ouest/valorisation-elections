@@ -1,0 +1,32 @@
+{
+  "name": "ods-local-devkit",
+  "version": "4.0.0",
+  "description": "Local dev. kit for ODS Data products. It empowers ODS users by providing a toolset to develop, test and publish data products on ODS platform",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opendatasoft/ods-cookbook/tree/master/widgets/external-use/local-dev-env"
+  },
+  "author": "fpassaniti",
+  "dependencies": {
+    "axios": "latest",
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "ejs": "^3.0.1",
+    "express": "latest",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-dart-sass": "latest",
+    "gulp-ejs": "^5.0.0",
+    "gulp-git": "^2.10.0",
+    "gulp-json-editor": "^2.5.4",
+    "gulp-live-server": "latest",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "latest",
+    "gulp-util": "latest",
+    "https-proxy-agent": "^7.0.0",
+    "request": "latest",
+    "through2": "^2.0.0",
+    "yargs": "^15.1.0"
+  }
+}

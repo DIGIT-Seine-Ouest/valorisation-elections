@@ -1,0 +1,53 @@
+<!-- custom basemap -->
+<script type="text/javascript">
+    angular.module('ods-widgets').config(function (ODSWidgetsConfigProvider) {
+        ODSWidgetsConfigProvider.setConfig({
+            "chartColors": ["#0d0d0d", "#004bba", "#1a9c05", "#fc4cd3", "#ff0000"],
+            "themes": {
+                "Discovery": {
+                    'url': 'https://discovery.opendatasoft.com/assets/theme_image/discovery.svg',
+                    'color': ''
+                },
+                "Privé": {
+                    'url': '/assets/theme_image/lock.svg',
+                    'color': ''
+                }
+            },
+            "basemaps": [
+                {
+                    "url": "https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?access-token=FR099NQpwlavnwzU2eVmGygH4PNEwk9gNKKPyN7zbfP9IJhVeh634PpJolA6I2Tn",
+                    "strictTMS": false,
+                    "provider": "custom",
+                    "label": "Jawg Light",
+                    "id": "jawg.light"
+                },
+                {
+                    "url": "https://tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=FR099NQpwlavnwzU2eVmGygH4PNEwk9gNKKPyN7zbfP9IJhVeh634PpJolA6I2Tn",
+                    "strictTMS": false,
+                    "provider": "custom",
+                    "label": "Jawg Dark",
+                    "id": "jawg.dark"
+                },
+                {
+                    "label": "Stamen",
+                    "provider": "stamen.toner"
+                },
+                {
+                    "url": "https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png",
+                    "strictTMS": false,
+                    "provider": "custom",
+                    "label": "Thunderforest",
+                    "id": "land"
+                },
+                {
+                    "url": "https://tile.jawg.io/jawg-streets/{z}/{x}/{y}.png?access-token=FR099NQpwlavnwzU2eVmGygH4PNEwk9gNKKPyN7zbfP9IJhVeh634PpJolA6I2Tn",
+                    "strictTMS": false,
+                    "provider": "custom",
+                    "label": "Jawg Streets",
+                    "id": "jawg.streets"
+                }
+            ]
+        });
+    });
+</script>
+
