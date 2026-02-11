@@ -6,8 +6,10 @@
     limitedecommune-dataset="limite-de-commune">
     <section class="container-fluid">
         <%- include("components/header.ejs") %>
-        <%- include("components/bdv-panel.ejs") %>
-        <%- include("components/bdv-map.ejs") %>
-        <%- include("components/result-display") %>
+        <div class="result-detailed">
+            <%- include("components/bdv-panel.ejs") %>
+            <%- include("components/bdv-map.ejs") %>
+            <%- include("components/result-display") %>
+        </div>
     </section>
 </ods-dataset-context>

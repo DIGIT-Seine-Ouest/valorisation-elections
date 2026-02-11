@@ -20,6 +20,41 @@
   box-sizing: border-box;
 }
 
+.result-detailed {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(400px, 3fr) minmax(250px, 1.5fr);
+  gap: 0;
+  height: calc(100vh - 80px);
+  width: 100%;
+  overflow: hidden;
+}
+.result-detailed .sidebar {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.result-detailed .map {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.result-detailed .map #map {
+  height: 100%;
+  width: 100%;
+}
+.result-detailed .detail-panel {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.container-fluid {
+  height: 100vh;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
 .app-header {
   width: 100%;
   background: var(--white);
@@ -34,11 +69,11 @@
   flex-shrink: 0;
 }
 .app-header .app-title {
-  color: var(--green-primary);
+  color: var(--green-dark);
+  font-weight: bolder;
 }
 
 .sidebar {
-  width: 320px;
   background: var(--white);
   border-right: 1px solid var(--border);
   padding: 20px;
@@ -46,6 +81,7 @@
   flex-direction: column;
   overflow-y: auto;
   flex-shrink: 0;
+  height: 100%;
 }
 
 .filter-title {
@@ -93,7 +129,6 @@
 }
 
 .detail-panel {
-  width: 420px;
   background: var(--white);
   border-left: 1px solid var(--border);
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.05);
