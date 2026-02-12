@@ -11,7 +11,7 @@
         <div class="result-detailed">
             <div class="sidebar">
     <!-- Afficher les datas -->
-    <div class="filter-title">Les quartiers</div>
+    <div class="filter-title">Liste des lieux de vote</div>
     <!-- Lister les lieux de votes -->
      <ul class="filter-list"
         ods-adv-analysis="bureaux"
@@ -41,6 +41,10 @@
         style="height: 100%;">
             <ods-map-layer 
                 context="bureauxdevoteelectoraux2026" 
+                refine-on-click-context="[resultatsmunicipales2026]"
+                refine-on-click-resultatsmunicipales2026-map-field="num_bureau"
+                refine-on-click-resultatsmunicipales2026-context-field="num_bureau"
+                refine-on-click-resultatsmunicipales2026-replace-refine="true"
                 color="rgb(101, 167, 11)"
                 picto="dot" 
                 show-marker="false" 
@@ -174,7 +178,7 @@
         </div>
 
         <!-- Partie résultats filtrée ou pas. -->
-        <h4 style="margin-bottom:15px; color:var(--text-dark); font-size:14px; font-weight:700; text-transform:uppercase;">Résultats détaillé</h4>
+        <h4 style="margin-bottom:15px; color:var(--text-dark); font-size:14px; font-weight:700; text-transform:uppercase;">Résultats</h4>
         <!-- Faire une boucle ICI  -->
         <div ods-analysis="candidats"
             ods-analysis-context="resultatsmunicipales2026"
