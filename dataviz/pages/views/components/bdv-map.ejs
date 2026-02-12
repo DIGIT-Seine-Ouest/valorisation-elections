@@ -1,29 +1,39 @@
+<!-- color-categories="{'BVOT048_1':'#FF6B6B','BVOT048_2':'#4ECDC4','BVOT048_3':'#45B7D1','BVOT048_4':'#FFA07A','BVOT048_5':'#98D8C8','BVOT048_6':'#F7DC6F','BVOT048_7':'#BB8FCE','BVOT048_8':'#85C1E2','BVOT048_9':'#F8B739','BVOT048_10':'#52B788','BVOT048_11':'#E63946','BVOT048_12':'#A8DADC','BVOT048_13':'#F77F00','BVOT048_14':'#06FFA5','BVOT048_15':'#D62828','BVOT048_16':'#023E8A','BVOT048_17':'#00B4D8','BVOT048_18':'#90E0EF','BVOT048_19':'#CAF0F8','BVOT048_20':'#8338EC','BVOT048_21':'#FF1493','BVOT048_22':'#32CD32','BVOT048_23':'#FFD700','BVOT048_24':'#FF4500','BVOT048_25':'#1E90FF','BVOT048_26':'#FF69B4','BVOT048_27':'#00CED1','BVOT048_28':'#9370DB','BVOT048_29':'#FF8C00','BVOT048_30':'#20B2AA','BVOT048_31':'#DC143C','BVOT048_32':'#7FFF00'}"  -->
+ <!-- color-by-field="id_bur_vote"  -->
+                <!-- color-categories-other="#C32D1C"  -->
 <div class="content-maps">
-    <ods-dataset-context context="bureauxdevoteelectoraux2026,limitedecommune" bureauxdevoteelectoraux2026-dataset="bureaux-de-vote-electoraux-2026" bureauxdevoteelectoraux2026-parameters="{'disjunctive.nom_bureau':true,'disjunctive.num_bureau':true}" limitedecommune-dataset="limite-de-commune">
-        <ods-map no-refit="false" scroll-wheel-zoom="false" basemap="jawg.light" style="height: 100%;">
-                <ods-map-layer 
-                    context="bureauxdevoteelectoraux2026" 
-                    color="rgb(101, 167, 11)" 
-                    picto="dot" 
-                    show-marker="false" 
-                    refine-on-click-context="ctxrefine"
-                    display="auto"></ods-map-layer>
-    
-                <ods-map-layer 
-                    context="limitedecommune" 
-                    color="#AAAAAA" 
-                    picto="ods-circle" 
-                    show-marker="true" 
-                    display="auto" 
-                    shape-opacity="0.3" 
-                    point-opacity="1" 
-                    border-color="#19630A"
-                    border-opacity="1" 
-                    border-size="3" 
-                    border-pattern="solid" 
-                    caption-picto-color="#E5E5E5" 
-                    size="4" size-min="3" size-max="5" size-function="linear"></ods-map-layer>
-        </ods-map>
-    
-    </ods-dataset-context>
+    <ods-map 
+        no-refit="false" 
+        scroll-wheel-zoom="false" 
+        basemap="jawg.light" 
+        style="height: 100%;">
+            <ods-map-layer 
+                context="bureauxdevoteelectoraux2026" 
+                color="rgb(101, 167, 11)"
+                picto="dot" 
+                show-marker="false" 
+                display="categories" 
+                shape-opacity="0.5" 
+                point-opacity="1" 
+                border-color="#19630A" 
+                border-opacity="1" 
+                border-size="1" 
+                border-pattern="solid" 
+                size="7"></ods-map-layer>
+
+            <ods-map-layer 
+                context="limitedecommune" 
+                color="#AAAAAA" 
+                picto="ods-circle" 
+                show-marker="true" 
+                display="auto" 
+                shape-opacity="0.3" 
+                point-opacity="1" 
+                border-color="#19630A"
+                border-opacity="1" 
+                border-size="3" 
+                border-pattern="solid" 
+                caption-picto-color="#E5E5E5" 
+                size="4" size-min="3" size-max="5" size-function="linear"></ods-map-layer>
+    </ods-map>
 </div>

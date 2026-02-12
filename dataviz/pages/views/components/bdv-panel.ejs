@@ -1,30 +1,21 @@
 <div class="sidebar">
-    <!-- SCRIPT SANS AFFICHAGE -->
-    <span ng-init="bdvquartiers = [];"></span>
-    <!-- Récupération des quartiers uniques -->
-    <span ods-results="items"
-            ods-results-context="resultatsmunicipales2026"
-            ods-results-max="500">
-        <!-- Boucler sur le Dataset -->
-        <span ng-repeat="item in items">
-            <!-- Intégrer les données uniques dans bdvCode -->
-            <span ng-if="bdvquartiers.indexOf(item.fields.nom_quartier) === -1">
-                {{ bdvquartiers.push(item.fields.nom_quartier) && item.fields.nom_quartier }}
-            </span>
-        </span>
-    </span>
-    <!-- FIN SCRIPT -->
-
     <!-- Afficher les datas -->
     <div class="filter-title">Les quartiers</div>
     <!-- Lister les lieux de votes -->
-     <ul class="filter-list">
-        <li class="filter-item">
+     <ul class="filter-list"
+        ods-adv-analysis="bureaux"
+        ods-adv-analysis-context="resultatsmunicipales2026"
+        ods-adv-analysis-select="num_bureau, nom_bureau"
+        ods-adv-analysis-group-by="num_bureau, nom_bureau">
+        <li class="filter-item" ng-if="resultatsmunicipales2026.parameters['refine.num_bureau']" ng-click="resultatsmunicipales2026.parameters = {'sort':'-num_bureau'}">
             <span class="station-num" style="background:var(--text-dark); color:white;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
-            Clear filter
+            Clear filter 
         </li>
-        <li class="filter-item" ng-repeat="quartier in bdvquartiers">
-            <span class="station-num">{{ $index + 1 }}</span> &nbsp; {{ quartier }}
+        <li class="filter-item" ng-repeat="bureau in bureaux">
+            <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau">
+                <span class="station-num">{{ bureau.num_bureau }}</span> 
+                &nbsp; <span class="station-num-texte">{{ bureau.nom_bureau | uppercase }}</span>
+            </span>
         </li>
     </ul>
 </div>

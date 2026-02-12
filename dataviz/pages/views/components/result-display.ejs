@@ -1,7 +1,11 @@
 <div class="detail-panel">
-    <div class="panel-header animate-fade">
+    <div class="panel-header animate-fade" ng-if="!resultatsmunicipales2026.parameters['refine.num_bureau']">
         <div class="panel-context">Résultats de la ville entière</div>
         <h2 class="panel-title">Meudon (Total)</h2>
+    </div>
+    <div class="panel-header animate-fade" ng-if="resultatsmunicipales2026.parameters['refine.num_bureau']">
+        <div class="panel-context">BUREAU N°</div>
+        <h2 class="panel-title">num_bureau</h2>
     </div>
     <div class="panel-body">
         <!-- Partie résulats d'aggregations -->

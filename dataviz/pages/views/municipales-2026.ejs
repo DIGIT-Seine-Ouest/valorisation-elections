@@ -1,8 +1,8 @@
 <ods-dataset-context context="resultatsmunicipales2026, bureauxdevoteelectoraux2026, limitedecommune" 
     resultatsmunicipales2026-dataset="resultats-municipales-2026"
-    resultatsmunicipales2026-parameters="{'sort':'nom_quartier'}"
+    resultatsmunicipales2026-parameters="{'sort':'-num_bureau'}"
     bureauxdevoteelectoraux2026-dataset="bureaux-de-vote-electoraux-2026" 
-    bureauxdevoteelectoraux2026-parameters="{'disjunctive.nom_bureau':true,'disjunctive.num_bureau':true}" 
+    bureauxdevoteelectoraux2026-parameters="{'disjunctive.num_bureau':true,'disjunctive.num_bureau':true}" 
     limitedecommune-dataset="limite-de-commune">
     <section class="container-fluid">
         <%- include("components/header.ejs") %>

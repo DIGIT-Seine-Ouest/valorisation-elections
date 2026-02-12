@@ -278,3 +278,19 @@
 .c-1 {
     background: var(--col-0);
 }
+
+.filter-item {
+    padding: 12px 5px; border-bottom: 1px solid #eee;
+    font-size: 13px; color: var(--text-dark); cursor: pointer;
+    display: flex; align-items: center; transition: 0.2s;
+}
+.filter-item:hover { 
+    color: var(--green-primary); 
+    background-color: #fcfcfc; 
+}
+
+.filter-item.active { 
+    font-weight: 700; color: var(--green-dark); 
+    border-left: 4px solid var(--green-primary); padding-left: 10px; 
+    background-color: #f9fcf5;
+}
