@@ -78,55 +78,37 @@
         <div class="stats-grid-main">
             <!-- Afficher le nombre d'inscrits -->
             <div class="stat-card-main">
-                <span 
-                    class="val-main"
-                    ods-aggregation="statInscrits"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_inscrits"
-                    ods-aggregation-function="SUM">
-                    {{ statInscrits | number }}
+                <span class="val-main"
+                    ods-analysis="Inscrits"
+                    ods-analysis-context="resultatsmunicipales2026"
+                    ods-analysis-x="liste"
+                    ods-analysis-serie-inscrits="SUM(nb_inscrits)">
+                    {{Inscrits["results"][0].inscrits | number}}
                 </span>
                 <span class="lbl-main">Inscrits</span>
             </div>
 
             <!-- Afficher le nombre de votants  -->
             <div class="stat-card-main">
-                <span 
-                    class="val-main"
-                    ods-aggregation="statVotants"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_votants"
-                    ods-aggregation-function="SUM">
-                    {{ statVotants | number }}
+                <span class="val-main"
+                    ods-analysis="Votants"
+                    ods-analysis-context="resultatsmunicipales2026"
+                    ods-analysis-x="liste"
+                    ods-analysis-serie-votants="SUM(nb_votants)">
+                    {{Votants["results"][0].votants | number}}
                 </span>
                 <span class="lbl-main">Votants</span>
             </div>
 
             <!-- Calculer le taux de participation -->
             <div class="stat-card-main" style="border-color:var(--green-primary);">
-
-                <!-- Calcul sophistiqué à faire -->
-                <!-- Récupérer les chiffres nb_inscrits -->
-                 <span 
-                    class="val-main"
-                    ods-aggregation="statInscrits"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_inscrits"
-                    ods-aggregation-function="SUM">
-                    <!-- Récupérer les chiffres nb_votants -->
-                    <span 
-                        class="val-main"
-                        ods-aggregation="statVotants"
-                        ods-aggregation-context="resultatsmunicipales2026"
-                        ods-aggregation-expression="nb_votants"
-                        ods-aggregation-function="SUM">
-
-                        <!-- Juste l'affichage des données -->
-                        <span class="val-main" style="color:var(--green-primary);">
-                            {{ (statVotants / statInscrits)*100 | number:2 }} %
-                        </span>
-
-                    </span>
+                 <span class="val-main" style="color:var(--green-primary);" 
+                    ods-adv-analysis="voteParticipation"
+                    ods-adv-analysis-context="resultatsmunicipales2026"
+                    ods-adv-analysis-select="(sum(nb_votants) / sum(nb_inscrits)) * 100 as participation"
+                    ods-adv-analysis-group-by="liste">
+                    {{ voteParticipation[0].participation | number:2 }} %
+                </span>
                 </span>
                 <span class="lbl-main">Participation</span>
             </div>
@@ -136,30 +118,13 @@
         <div class="stats-grid-sub">
             <!-- Calculer nombre de voix exprimé -->
             <div class="stat-card-sub highlight-stat">
-                <span 
-                    class="val-main"
-                    ods-aggregation="statVotants"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_votants"
-                    ods-aggregation-function="SUM">
-                    
-                    <span 
-                        class="val-sub"
-                        ods-aggregation="statNul"
-                        ods-aggregation-context="resultatsmunicipales2026"
-                        ods-aggregation-expression="nb_nuls"
-                        ods-aggregation-function="SUM">
-                    
-                        <span 
-                            class="val-sub"
-                            ods-aggregation="statBlanc"
-                            ods-aggregation-context="resultatsmunicipales2026"
-                            ods-aggregation-expression="nb_blanc"
-                            ods-aggregation-function="SUM">
-                            {{ statVotants - (statNul + statBlanc) | number }}
-                        </span>
-                    </span>
-                </span>
+                <div class="val-sub"
+                    ods-adv-analysis="votesExprimes"
+                    ods-adv-analysis-context="resultatsmunicipales2026"
+                    ods-adv-analysis-select="sum(nb_votants) - ( sum(nb_nuls) + sum(nb_blanc) ) as total_votes_exprimes"
+                    ods-adv-analysis-group-by="liste">
+                    {{ votesExprimes[0].total_votes_exprimes | number }}
+                </div>
                 <span class="lbl-sub">Exprimés</span>
             </div>
 
@@ -167,11 +132,11 @@
             <div class="stat-card-sub">
                 <span 
                     class="val-sub"
-                    ods-aggregation="nbAbstentions"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_abstentions"
-                    ods-aggregation-function="SUM">
-                    {{ nbAbstentions | number }}
+                    ods-analysis="Abstentions"
+                    ods-analysis-context="resultatsmunicipales2026"
+                    ods-analysis-x="liste"
+                    ods-analysis-serie-abstentions="SUM(nb_abstentions)">
+                    {{Abstentions["results"][0].abstentions | number}}
                 </span>
                 <span class="lbl-sub">Abstentions</span>
             </div>
@@ -180,11 +145,11 @@
             <div class="stat-card-sub">
                 <span 
                     class="val-sub"
-                    ods-aggregation="statBlanc"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_blanc"
-                    ods-aggregation-function="SUM">
-                    {{ statBlanc | number }}
+                    ods-analysis="Blancs"
+                    ods-analysis-context="resultatsmunicipales2026"
+                    ods-analysis-x="liste"
+                    ods-analysis-serie-blanc="SUM(nb_blanc)">
+                    {{Blancs["results"][0].blanc | number}}
                 </span>
                 <span class="lbl-sub">Blancs</span>
             </div>
@@ -193,11 +158,11 @@
             <div class="stat-card-sub">
                 <span 
                     class="val-sub"
-                    ods-aggregation="statNul"
-                    ods-aggregation-context="resultatsmunicipales2026"
-                    ods-aggregation-expression="nb_nuls"
-                    ods-aggregation-function="SUM">
-                    {{ statNul | number }}
+                    ods-analysis="Nuls"
+                    ods-analysis-context="resultatsmunicipales2026"
+                    ods-analysis-x="liste"
+                    ods-analysis-serie-nuls="SUM(nb_nuls)">
+                    {{Nuls["results"][0].nuls | number}}
                 </span>
                 <span class="lbl-sub">Nuls</span>
             </div>
@@ -206,19 +171,40 @@
         <!-- Partie résultats filtrée ou pas. -->
         <h4 style="margin-bottom:15px; color:var(--text-dark); font-size:14px; font-weight:700; text-transform:uppercase;">Résultats détaillé</h4>
         <!-- Faire une boucle ICI  -->
-        <div 
-            ods-results="items"
-            ods-results-context="resultatsmunicipales2026" 
-            ods-results-max="500">
-            <div class="res-item" ng-repeat="item in items">
+        <div ods-analysis="candidats"
+            ods-analysis-context="resultatsmunicipales2026"
+            ods-analysis-x="liste"
+            ods-analysis-serie-nombre="SUM(nombre_de_voies)"
+            ods-analysis-sort="nombre">
+            <div class="res-item" ng-repeat="candidat in candidats['results']">
+
                 <div class="res-header">
-                    <span class="res-name">Meudon Écologie</span>
-                    <span style="font-weight:bold; color:var(--text-dark);">15.54%</span>
+                    <span class="res-name">{{candidat.x}}</span>
+                    <span style="font-weight:bold; color:var(--text-dark);">
+                        <span 
+                            ods-adv-analysis="votesExprimes"
+                            ods-adv-analysis-context="resultatsmunicipales2026"
+                            ods-adv-analysis-select="sum(nb_votants) - ( sum(nb_nuls) + sum(nb_blanc) ) as total_votes_exprimes"
+                            ods-adv-analysis-group-by="liste">
+                            {{ (candidat.nombre / votesExprimes[0].total_votes_exprimes) * 100 | number:2 }} %
+                        </span>
+                    </span>
                 </div>
-                <div class="progress-track">
-                    <div class="progress-bar c-1" style="width: 15.54%"></div>
+
+                <div ods-adv-analysis="votesExprimes"
+                    ods-adv-analysis-context="resultatsmunicipales2026"
+                    ods-adv-analysis-select="sum(nb_votants) - ( sum(nb_nuls) + sum(nb_blanc) ) as total_votes_exprimes"
+                    ods-adv-analysis-group-by="liste">
+                    <div class="progress-track">
+                        <div class="progress-bar c-1" 
+                            style="width: {{ (candidat.nombre / votesExprimes[0].total_votes_exprimes) * 100 }}%">
+                        </div>
+                    </div>
+                    
                 </div>
-                <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 794 voix</div>
+                <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">
+                    {{candidat.nombre | number }} voix
+                </div>
             </div>
         </div>
     </div>
