@@ -3,56 +3,153 @@
         <div class="panel-context">Résultats de la ville entière</div>
         <h2 class="panel-title">Meudon (Total)</h2>
     </div>
-    
     <div class="panel-body">
+        <!-- Partie résulats d'aggregations -->
         <div class="stats-grid-main">
-            <div class="stat-card-main"><span class="val-main">30 537</span><span class="lbl-main">Inscrits</span></div>
-            <div class="stat-card-main"><span class="val-main">18 420</span><span class="lbl-main">Votants</span></div>
-            <div class="stat-card-main" style="border-color:var(--green-primary);"><span class="val-main" style="color:var(--green-primary);">60.32%</span><span class="lbl-main">Participation</span></div>
+            <!-- Afficher le nombre d'inscrits -->
+            <div class="stat-card-main">
+                <span 
+                    class="val-main"
+                    ods-aggregation="statInscrits"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_inscrits"
+                    ods-aggregation-function="SUM">
+                    {{ statInscrits | number }}
+                </span>
+                <span class="lbl-main">Inscrits</span>
+            </div>
+
+            <!-- Afficher le nombre de votants  -->
+            <div class="stat-card-main">
+                <span 
+                    class="val-main"
+                    ods-aggregation="statVotants"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_votants"
+                    ods-aggregation-function="SUM">
+                    {{ statVotants | number }}
+                </span>
+                <span class="lbl-main">Votants</span>
+            </div>
+
+            <!-- Calculer le taux de participation -->
+            <div class="stat-card-main" style="border-color:var(--green-primary);">
+
+                <!-- Calcul sophistiqué à faire -->
+                <!-- Récupérer les chiffres nb_inscrits -->
+                 <span 
+                    class="val-main"
+                    ods-aggregation="statInscrits"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_inscrits"
+                    ods-aggregation-function="SUM">
+                    <!-- Récupérer les chiffres nb_votants -->
+                    <span 
+                        class="val-main"
+                        ods-aggregation="statVotants"
+                        ods-aggregation-context="resultatsmunicipales2026"
+                        ods-aggregation-expression="nb_votants"
+                        ods-aggregation-function="SUM">
+
+                        <!-- Juste l'affichage des données -->
+                        <span class="val-main" style="color:var(--green-primary);">
+                            {{ (statVotants / statInscrits)*100 | number:2 }} %
+                        </span>
+
+                    </span>
+                </span>
+                <span class="lbl-main">Participation</span>
+            </div>
+
         </div>
     
         <div class="stats-grid-sub">
-            <div class="stat-card-sub highlight-stat"><span class="val-sub">17 982</span><span class="lbl-sub">Exprimés</span></div>
-            <div class="stat-card-sub"><span class="val-sub">776</span><span class="lbl-sub">Procurations</span></div>
-            <div class="stat-card-sub"><span class="val-sub">278</span><span class="lbl-sub">Blancs</span></div>
-            <div class="stat-card-sub"><span class="val-sub">160</span><span class="lbl-sub">Nuls</span></div>
+            <!-- Calculer nombre de voix exprimé -->
+            <div class="stat-card-sub highlight-stat">
+                <span 
+                    class="val-main"
+                    ods-aggregation="statVotants"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_votants"
+                    ods-aggregation-function="SUM">
+                    
+                    <span 
+                        class="val-sub"
+                        ods-aggregation="statNul"
+                        ods-aggregation-context="resultatsmunicipales2026"
+                        ods-aggregation-expression="nb_nuls"
+                        ods-aggregation-function="SUM">
+                    
+                        <span 
+                            class="val-sub"
+                            ods-aggregation="statBlanc"
+                            ods-aggregation-context="resultatsmunicipales2026"
+                            ods-aggregation-expression="nb_blanc"
+                            ods-aggregation-function="SUM">
+                            {{ statVotants - (statNul + statBlanc) | number }}
+                        </span>
+                    </span>
+                </span>
+                <span class="lbl-sub">Exprimés</span>
+            </div>
+
+            <!-- Afficher le nb d'abstention -->
+            <div class="stat-card-sub">
+                <span 
+                    class="val-sub"
+                    ods-aggregation="nbAbstentions"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_abstentions"
+                    ods-aggregation-function="SUM">
+                    {{ nbAbstentions | number }}
+                </span>
+                <span class="lbl-sub">Abstentions</span>
+            </div>
+
+            <!-- Afficher le nb de null -->
+            <div class="stat-card-sub">
+                <span 
+                    class="val-sub"
+                    ods-aggregation="statBlanc"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_blanc"
+                    ods-aggregation-function="SUM">
+                    {{ statBlanc | number }}
+                </span>
+                <span class="lbl-sub">Blancs</span>
+            </div>
+
+            <!-- Afficher les nuls -->
+            <div class="stat-card-sub">
+                <span 
+                    class="val-sub"
+                    ods-aggregation="statNul"
+                    ods-aggregation-context="resultatsmunicipales2026"
+                    ods-aggregation-expression="nb_nuls"
+                    ods-aggregation-function="SUM">
+                    {{ statNul | number }}
+                </span>
+                <span class="lbl-sub">Nuls</span>
+            </div>
         </div>
-        <h4 style="margin-bottom:15px; color:var(--text-dark); font-size:14px; font-weight:700; text-transform:uppercase;">Résultats</h4>
-                
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Meudon Écologie</span><span style="font-weight:bold; color:var(--text-dark);">15.54%</span></div>
-            <div class="progress-track"><div class="progress-bar c-1" style="width: 15.54%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 794 voix</div>
-        </div>
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Indépendants</span><span style="font-weight:bold; color:var(--text-dark);">15.40%</span></div>
-            <div class="progress-track"><div class="progress-bar c-6" style="width: 15.40%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 769 voix</div>
-        </div>
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Union Meudon</span><span style="font-weight:bold; color:var(--text-dark);">14.99%</span></div>
-            <div class="progress-track"><div class="progress-bar c-0" style="width: 14.99%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 696 voix</div>
-        </div>
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Droite Républicaine</span><span style="font-weight:bold; color:var(--text-dark);">14.78%</span></div>
-            <div class="progress-track"><div class="progress-bar c-3" style="width: 14.78%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 657 voix</div>
-        </div>
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Renouveau &amp; Avenir</span><span style="font-weight:bold; color:var(--text-dark);">13.42%</span></div>
-            <div class="progress-track"><div class="progress-bar c-2" style="width: 13.42%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 414 voix</div>
-        </div>
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Alternative Citoyenne</span><span style="font-weight:bold; color:var(--text-dark);">13.09%</span></div>
-            <div class="progress-track"><div class="progress-bar c-5" style="width: 13.09%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 353 voix</div>
-        </div>
-        <div class="res-item">
-            <div class="res-header"><span class="res-name">Solidarité Sociale</span><span style="font-weight:bold; color:var(--text-dark);">12.79%</span></div>
-            <div class="progress-track"><div class="progress-bar c-4" style="width: 12.79%"></div></div>
-            <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 299 voix</div>
+
+        <!-- Partie résultats filtrée ou pas. -->
+        <h4 style="margin-bottom:15px; color:var(--text-dark); font-size:14px; font-weight:700; text-transform:uppercase;">Résultats détaillé</h4>
+        <!-- Faire une boucle ICI  -->
+        <div 
+            ods-results="items"
+            ods-results-context="resultatsmunicipales2026" 
+            ods-results-max="500">
+            <div class="res-item" ng-repeat="item in items">
+                <div class="res-header">
+                    <span class="res-name">Meudon Écologie</span>
+                    <span style="font-weight:bold; color:var(--text-dark);">15.54%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar c-1" style="width: 15.54%"></div>
+                </div>
+                <div style="font-size:11px; color:#888; margin-top:3px; text-align:right;">2 794 voix</div>
+            </div>
         </div>
     </div>
 </div>

@@ -241,19 +241,40 @@
             .res-item {
                 margin-bottom: 12px;
 
-                .res-header {
-                    display: flex;
-                    justify-content: space-between;
-                    font-size: 13px;
-                    margin-bottom: 6px;
 
-                    .res-name {
-                        font-weight: 500;
-                    }
-                }
+                
             }
         }
         
     }
     
+}
+
+.res-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+
+    .res-name {
+        font-weight: 500;
+    }
+}
+
+// Problème
+.progress-track {
+    height: 10px;
+    background: #eee;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.c-1 {
+    background: var(--col-0);
 }
