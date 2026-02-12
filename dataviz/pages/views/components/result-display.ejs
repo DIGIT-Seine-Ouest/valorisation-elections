@@ -4,8 +4,12 @@
         <h2 class="panel-title">Meudon (Total)</h2>
     </div>
     <div class="panel-header animate-fade" ng-if="resultatsmunicipales2026.parameters['refine.num_bureau']">
-        <div class="panel-context">BUREAU N°</div>
-        <h2 class="panel-title">num_bureau</h2>
+        <div class="panel-context">BUREAU N°{{resultatsmunicipales2026.parameters['refine.num_bureau']}}</div>
+            <h2 class="panel-title" ods-adv-analysis="myData"
+                ods-adv-analysis-context="resultatsmunicipales2026"
+                ods-adv-analysis-select="nom_bureau">
+                {{myData[0].nom_bureau }}
+            </h2>
     </div>
     <div class="panel-body">
         <!-- Partie résulats d'aggregations -->
