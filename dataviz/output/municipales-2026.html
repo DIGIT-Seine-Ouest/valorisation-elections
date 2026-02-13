@@ -1,9 +1,10 @@
-<ods-dataset-context context="ctx, resultatsmunicipales2026, bureauxdevoteelectoraux2026, limitedecommune" 
+<ods-dataset-context context="ctx, resultatsmunicipales2026, bureauxdevoteelectoraux2026, limitedecommune, electionssecteurs" 
     ctx-dataset="resultats-municipales-2026"
     resultatsmunicipales2026-dataset="resultats-municipales-2026"
     resultatsmunicipales2026-parameters="{'sort':'-num_bureau'}"
     bureauxdevoteelectoraux2026-dataset="bureaux-de-vote-electoraux-2026" 
     bureauxdevoteelectoraux2026-parameters="{'disjunctive.num_bureau':true,'disjunctive.num_bureau':true}" 
+    electionssecteurs-dataset="elections-secteurs"
     limitedecommune-dataset="limite-de-commune">
     <section class="container-fluid">
         <header class="app-header">
@@ -19,14 +20,14 @@
         ods-adv-analysis-context="ctx"
         ods-adv-analysis-select="num_bureau, nom_bureau"
         ods-adv-analysis-group-by="num_bureau, nom_bureau">
-        <li class="filter-item" ng-click="resultatsmunicipales2026.parameters = {'sort':'-num_bureau'}; bureauxdevoteelectoraux2026.parameters = {'sort':'-num_bureau'}">
+        <li class="filter-item" ng-click="resultatsmunicipales2026.parameters = {'sort':'-num_bureau'}; bureauxdevoteelectoraux2026.parameters = {'sort':'-num_bureau'}; electionssecteurs.parameters = {}">
             <span class="station-num" style="background:var(--text-dark); color:white;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
             &nbsp; <strong>Tout voir</strong>
         </li>
         <!-- Afficher les bureaux de votes -->
         <span ng-repeat="bureau in bureaux">
             <li class="{{ bureau.num_bureau == resultatsmunicipales2026.parameters['refine.num_bureau'] ? 'filter-item-active' : 'filter-item'}}">
-                <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau; bureauxdevoteelectoraux2026.parameters['refine.num_bureau'] = bureau.num_bureau">
+                <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau; bureauxdevoteelectoraux2026.parameters['refine.num_bureau'] = bureau.num_bureau; electionssecteurs.parameters['refine.num_bureau'] = bureau.num_bureau">
                     <span class="{{ bureau.num_bureau == resultatsmunicipales2026.parameters['refine.num_bureau'] ? 'station-num-active' : 'station-num'}}">{{ bureau.num_bureau }}</span> 
                     &nbsp; <span class="station-num-texte">{{ bureau.nom_bureau | uppercase }}</span>
                 </span>
@@ -58,34 +59,25 @@
                 border-size="1" 
                 border-pattern="solid" 
                 size="7"></ods-map-layer>
-    </ods-map>
-</div>
 
-<!-- <div class="content-maps" ng-if="bureauxdevoteelectoraux2026.parameters['refine.num_bureau']">
-    <ods-map 
-        no-refit="false" 
-        scroll-wheel-zoom="false" 
-        basemap="jawg.light" 
-        style="height: 100%;">
             <ods-map-layer 
-                context="bureauxdevoteelectoraux2026" 
-                refine-on-click-context="[resultatsmunicipales2026, bureauxdevoteelectoraux2026]"
-                refine-on-click-resultatsmunicipales2026-map-field="num_bureau"
-                refine-on-click-resultatsmunicipales2026-context-field="num_bureau"
-                refine-on-click-resultatsmunicipales2026-replace-refine="true"
-                color="rgb(101, 167, 11)"
-                picto="dot" 
-                show-marker="false" 
-                display="categories" 
-                shape-opacity="0.5" 
-                point-opacity="1" 
-                border-color="#19630A" 
-                border-opacity="1" 
+                context="electionssecteurs" 
+                color="rgb(101, 167, 11)" 
+                picto="ods-circle" 
+                shape-opacity="0.1" 
+                show-marker="true" 
+                display="auto" 
+                point-opacity="0" 
+                border-color="#FFFFFF" 
+                border-opacity="0" 
                 border-size="1" 
                 border-pattern="solid" 
-                size="7"></ods-map-layer>
+                size="4" 
+                size-min="3" 
+                size-max="5" 
+                size-function="linear"></ods-map-layer>
     </ods-map>
-</div> -->
+</div>
             <div class="detail-panel">
     <div class="panel-header animate-fade" ng-if="!resultatsmunicipales2026.parameters['refine.num_bureau']">
         <div class="panel-context">Résultats de la ville entière</div>

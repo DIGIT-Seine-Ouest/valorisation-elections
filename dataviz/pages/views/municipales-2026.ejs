@@ -1,9 +1,10 @@
-<ods-dataset-context context="ctx, resultatsmunicipales2026, bureauxdevoteelectoraux2026, limitedecommune" 
+<ods-dataset-context context="ctx, resultatsmunicipales2026, bureauxdevoteelectoraux2026, limitedecommune, electionssecteurs" 
     ctx-dataset="resultats-municipales-2026"
     resultatsmunicipales2026-dataset="resultats-municipales-2026"
     resultatsmunicipales2026-parameters="{'sort':'-num_bureau'}"
     bureauxdevoteelectoraux2026-dataset="bureaux-de-vote-electoraux-2026" 
     bureauxdevoteelectoraux2026-parameters="{'disjunctive.num_bureau':true,'disjunctive.num_bureau':true}" 
+    electionssecteurs-dataset="elections-secteurs"
     limitedecommune-dataset="limite-de-commune">
     <section class="container-fluid">
         <%- include("components/header.ejs") %>

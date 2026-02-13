@@ -1,4 +1,11 @@
+@charset "UTF-8";
+// Mettre en fullpage en prod
+#main {
+  margin: 0;
+  padding: 0;
+}
+
 section {
-    padding: 3rem 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.05), white);
+  padding: 3rem 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.05), white);
 }

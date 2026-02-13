@@ -1,3 +1,13 @@
+#main {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  padding: 3rem 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.05), white);
+}
+
 :root {
   --green-primary: rgb(101, 167, 11);
   --green-dark: rgb(71, 125, 40);
@@ -12,12 +22,6 @@
   --col-4: #e84393;
   --col-5: #6c5ce7;
   --col-6: #636e72;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .container-fluid {
