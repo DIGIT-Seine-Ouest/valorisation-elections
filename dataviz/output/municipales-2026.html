@@ -6,14 +6,41 @@
     bureauxdevoteelectoraux2026-parameters="{'disjunctive.num_bureau':true,'disjunctive.num_bureau':true}" 
     electionssecteurs-dataset="elections-secteurs"
     limitedecommune-dataset="limite-de-commune">
-    <section class="container-fluid">
+    <section class="container-fluid" ng-init="sidebarOpen = false">
         <header class="app-header">
     <h1 class="app-title">Municipales Meudon 2026</h1>
 </header>
         <div class="result-detailed">
-            <div class="sidebar">
+            <div class="sidebar-overlay" 
+        ng-class="{'open': sidebarOpen}" 
+        ng-click="sidebarOpen = false">
+</div>
+
+<!-- Bouton flottant mobile -->
+<button class="mobile-menu-btn" ng-show="!resultatsmunicipales2026.parameters['refine.num_bureau']"  ng-click="sidebarOpen = true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+    </svg>
+        Filtrer par bureau de vote
+</button>
+<button class="mobile-menu-btn" ng-show="resultatsmunicipales2026.parameters['refine.num_bureau']"  ng-click="resultatsmunicipales2026.parameters = {'sort':'-num_bureau'};">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+    </svg>
+        Effacer le filtre
+</button>
+
+
+
+
+            <div class="sidebar" ng-class="{'open': sidebarOpen}">
     <!-- Afficher les datas -->
-    <div class="filter-title">Liste des lieux de vote</div>
+    <div class="sidebar-modal-header">
+        <span class="modal-title">Liste des lieux de vote</span>
+        <button class="close-btn" ng-click="sidebarOpen = false">×</button>
+    </div>
     <!-- Lister les lieux de votes -->
      <ul class="filter-list"
         ods-adv-analysis="bureaux"
@@ -27,7 +54,7 @@
         <!-- Afficher les bureaux de votes -->
         <span ng-repeat="bureau in bureaux">
             <li class="{{ bureau.num_bureau == resultatsmunicipales2026.parameters['refine.num_bureau'] ? 'filter-item-active' : 'filter-item'}}">
-                <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau; bureauxdevoteelectoraux2026.parameters['refine.num_bureau'] = bureau.num_bureau; electionssecteurs.parameters['refine.num_bureau'] = bureau.num_bureau">
+                <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau; bureauxdevoteelectoraux2026.parameters['refine.num_bureau'] = bureau.num_bureau; electionssecteurs.parameters['refine.num_bureau'] = bureau.num_bureau; $parent.sidebarOpen = false">
                     <span class="{{ bureau.num_bureau == resultatsmunicipales2026.parameters['refine.num_bureau'] ? 'station-num-active' : 'station-num'}}">{{ bureau.num_bureau }}</span> 
                     &nbsp; <span class="station-num-texte">{{ bureau.nom_bureau | uppercase }}</span>
                 </span>
@@ -36,7 +63,7 @@
     </ul>
 </div>
             <!-- <div class="content-maps" ng-if="!bureauxdevoteelectoraux2026.parameters['refine.num_bureau']"> -->
-<div class="content-maps">
+<div class="content-maps" ng-if="!sidebarOpen">
     <ods-map 
         no-refit="false" 
         scroll-wheel-zoom="false" 
@@ -127,7 +154,6 @@
                     ods-adv-analysis-group-by="liste">
                     {{ voteParticipation[0].participation | number:2 }} %
                 </span>
-                </span>
                 <span class="lbl-main">Participation</span>
             </div>
 
@@ -215,7 +241,7 @@
                     ods-adv-analysis-group-by="liste">
                     <div class="progress-track">
                         <div class="progress-bar c-1" 
-                            style="width: {{ (candidat.nombre / votesExprimes[0].total_votes_exprimes) * 100 }}%">
+                            ng-style="{'width': ((candidat.nombre / votesExprimes[0].total_votes_exprimes) * 100) + '%'}">
                         </div>
                     </div>
                     

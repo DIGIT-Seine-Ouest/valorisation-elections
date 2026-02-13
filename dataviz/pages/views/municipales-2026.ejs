@@ -6,9 +6,10 @@
     bureauxdevoteelectoraux2026-parameters="{'disjunctive.num_bureau':true,'disjunctive.num_bureau':true}" 
     electionssecteurs-dataset="elections-secteurs"
     limitedecommune-dataset="limite-de-commune">
-    <section class="container-fluid">
+    <section class="container-fluid" ng-init="sidebarOpen = false">
         <%- include("components/header.ejs") %>
         <div class="result-detailed">
+            <%- include("components/mobile-panel.ejs") %>
             <%- include("components/bdv-panel.ejs") %>
             <%- include("components/bdv-map.ejs") %>
             <%- include("components/result-display") %>
