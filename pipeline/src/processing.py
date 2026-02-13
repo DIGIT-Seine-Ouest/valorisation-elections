@@ -12,7 +12,7 @@ def load_eirel(filepath, config_path: str='data/bronze/reference/eirel_columns.j
 
     colonnes = {int(k): v for k, v in config['fixed_columns'].items()}
 
-    temp = pd.read_csv(filepath, sep=";", skiprows=2, header=None, usecols=[17], nrows=1)
+    temp = pd.read_csv(filepath, sep=";", header=None, usecols=[17], nrows=1)
     nb_listes = temp.iloc[0, 0]
 
     start_idx = config['dynamic_columns']['start_index']
@@ -20,8 +20,9 @@ def load_eirel(filepath, config_path: str='data/bronze/reference/eirel_columns.j
         colonnes[start_idx + 2*(i-1)] = f"code_liste_{i}"
         colonnes[start_idx + 2*(i-1) + 1] = f"voix_liste_{i}"
 
-    data = pd.read_csv(filepath, sep=";", skiprows=2, header=None)
+    data = pd.read_csv(filepath, sep=";", header=None)
     data.rename(columns=colonnes, inplace=True)
+    logger.info(data.bureau_vote.nunique())
     logger.info("EIREL récupéré avec succès.")
 
     return data

@@ -1,9 +1,20 @@
 bureau_vote,type_election,annee,tour,commune,nb_inscrits,nb_abstentions,nb_votants,nb_emargements,nb_blanc,nb_nuls,nom_bureau,Lorenzo il Magnifico,Florentin Tarentino,Isabella del Castillo,Alejandro el Grande,nom_quartier,num_bureau
+1,mn,2025,10,48,931,231,700,7000,100,101,Mairie,1000,1001,350,130,Meudon Centre,1
+3,MN,2025,1,48,987,187,800,800,10,10,Espace jeunesse Val Fleury,80,50,400,250,Val Fleury,3
 7,MN,2025,1,48,1032,332,700,700,10,10,Ecole maternelle du Centre,80,100,345,155,Val Fleury,7
 14,MN,2025,1,48,933,13,920,920,10,10,Gymnase Bussière,50,300,400,150,Bellevue,14
 15,MN,2025,1,48,1015,15,1000,1000,20,30,Ecole maternelle des Jardies,50,200,600,100,Meudon Centre,15
 24,MN,2025,1,48,870,20,850,850,30,20,Médiathèque de Meudon-la-Forêt,50,250,450,50,Meudon-la-Forêt,24
 31,MN,2025,1,48,930,30,900,900,10,20,Ecole élémentaire Pierre Brossolette,200,150,450,70,Meudon-sur-Seine,31
+6,MN,2025,1,48,1041,241,800,800,10,10,Ecole élémentaire Jules Ferry,80,100,400,200,Meudon Centre,6
+8,MN,2025,1,48,957,207,750,750,5,5,Espace culturel Les Sablons,40,100,380,220,Meudon Centre,8
+9,MN,2025,1,48,952,152,800,800,10,10,Potager du Dauphin,100,100,400,180,Meudon Centre,9
+10,MN,2025,1,48,943,243,700,700,10,10,École élémentaire Charles-Desvergnes,50,50,340,240,Meudon Centre,10
+11,MN,2025,1,48,962,262,700,700,10,10,École élémentaire Charles-Desvergnes,100,100,350,130,Meudon Centre,11
+16,MN,2025,1,48,973,23,950,950,20,30,Ecole maternelle Jean de la Fontaine,100,200,500,100,Bellevue,16
+23,MN,2025,1,48,895,5,890,890,30,20,Ecole maternelle Curie Saint-Exupery,40,300,450,50,Meudon-la-Forêt,23
+25,MN,2025,1,48,922,22,900,900,30,20,Ecole élémentaire Camus Pasteur,50,300,450,50,Meudon-la-Forêt,25
+27,MN,2025,1,48,908,8,900,900,50,30,Ecole maternelle Paul Bert,100,200,500,20,Le Val,27
 2,MN,2025,1,48,1023,223,800,800,5,5,Club Séniors Lavoisier,90,100,500,100,Meudon Centre,2
 4,MN,2025,1,48,1036,336,700,700,10,10,Complexe sportif René Leduc,80,100,350,150,Val Fleury,4
 5,MN,2025,1,48,1006,256,750,750,25,25,Ecole élémentaire Jules Ferry,150,150,352,48,Meudon Centre,5
@@ -20,12 +31,3 @@ bureau_vote,type_election,annee,tour,commune,nb_inscrits,nb_abstentions,nb_votan
 29,MN,2025,1,48,865,65,800,800,20,10,Ecole maternelle du Val,250,150,350,20,Meudon Centre,29
 30,MN,2025,1,48,916,16,900,900,50,20,Ecole maternelle Charles Perrault,200,100,400,130,Meudon-sur-Seine,30
 32,MN,2025,1,48,874,74,800,800,5,20,L'Avant-Seine,200,100,350,125,Meudon-sur-Seine,32
-6,MN,2025,1,48,1041,241,800,800,10,10,Ecole élémentaire Jules Ferry,80,100,400,200,Meudon Centre,6
-8,MN,2025,1,48,957,207,750,750,5,5,Espace culturel Les Sablons,40,100,380,220,Meudon Centre,8
-9,MN,2025,1,48,952,152,800,800,10,10,Potager du Dauphin,100,100,400,180,Meudon Centre,9
-10,MN,2025,1,48,943,243,700,700,10,10,École élémentaire Charles-Desvergnes,50,50,340,240,Meudon Centre,10
-11,MN,2025,1,48,962,262,700,700,10,10,École élémentaire Charles-Desvergnes,100,100,350,130,Meudon Centre,11
-16,MN,2025,1,48,973,23,950,950,20,30,Ecole maternelle Jean de la Fontaine,100,200,500,100,Bellevue,16
-23,MN,2025,1,48,895,5,890,890,30,20,Ecole maternelle Curie Saint-Exupery,40,300,450,50,Meudon-la-Forêt,23
-25,MN,2025,1,48,922,22,900,900,30,20,Ecole élémentaire Camus Pasteur,50,300,450,50,Meudon-la-Forêt,25
-27,MN,2025,1,48,908,8,900,900,50,30,Ecole maternelle Paul Bert,100,200,500,20,Le Val,27
