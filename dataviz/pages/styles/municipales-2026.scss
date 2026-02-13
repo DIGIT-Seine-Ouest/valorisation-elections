@@ -319,3 +319,236 @@
 .c-1 {
     background: var(--col-0);
 }
+
+
+// ============================================
+// RESPONSIVE MOBILE
+// ============================================
+
+// Bouton flottant mobile (à ajouter dans le HTML)
+.mobile-menu-btn {
+    display: none; // Caché sur desktop
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green-primary);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(101, 167, 11, 0.4);
+    z-index: 1000;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .content-maps {
+        display: none;
+    }
+
+    .detail-panel {
+        height: 100% !important;
+        overflow-y: visible;
+    }
+    
+    // Afficher le bouton mobile
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    // Modifier le layout principal
+    .result-detailed {
+        grid-template-columns: 1fr; // Une seule colonne
+        grid-template-rows: 1fr auto; // Carte puis panneau
+        height: calc(100vh - 60px); // Header plus petit
+    }
+
+    // Header mobile
+    .app-header {
+        padding: 10px 15px;
+        
+        .app-title {
+            font-size: 16px;
+        }
+    }
+
+    // SIDEBAR devient une MODAL
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 9999;
+        background: white;
+        transform: translateY(100%); // Caché en bas
+        transition: transform 0.3s ease;
+        border-right: none;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+        padding: 0;
+
+        // Quand la modal est ouverte
+        &.open {
+            transform: translateY(0);
+        }
+    }
+
+    // Header de la modal sidebar
+    .sidebar-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 2px solid var(--green-primary);
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+
+        .modal-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    // Contenu de la sidebar modal
+    .filter-list {
+        padding: 0 20px 20px 20px;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+
+    .filter-title {
+        display: none; // Déjà dans le header de la modal
+    }
+
+    // Carte en pleine largeur
+    .content-maps {
+        width: 100%;
+        height: 60vh; // 60% de la hauteur
+        order: 1;
+    }
+
+    // Panneau de détails en bas
+    .detail-panel {
+        width: 100%;
+        height: 40vh; // 40% de la hauteur
+        order: 2;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        overflow-y: auto;
+
+        .panel-header {
+            padding: 15px;
+
+            .panel-context {
+                font-size: 10px;
+            }
+
+            .panel-title {
+                font-size: 16px;
+            }
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+    }
+
+    // Stats grids adaptées
+    .stats-grid-main {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .stat-card-main {
+        padding: 8px 4px;
+
+        .val-main {
+            font-size: 14px;
+        }
+
+        .lbl-main {
+            font-size: 9px;
+        }
+    }
+
+    .stats-grid-sub {
+        grid-template-columns: repeat(2, 1fr); // 2 colonnes au lieu de 4
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+
+    .stat-card-sub {
+        padding: 6px 4px;
+
+        .val-sub {
+            font-size: 12px;
+        }
+
+        .lbl-sub {
+            font-size: 8px;
+        }
+    }
+
+    // Résultats
+    .res-item {
+        margin-bottom: 10px;
+    }
+
+    .res-header {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .progress-track {
+        height: 8px;
+    }
+}
+
+// Overlay pour la modal (optionnel)
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    
+    &.open {
+        display: block;
+    }
+}
