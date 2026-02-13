@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #main {
   margin: 0;
   padding: 0;
@@ -332,10 +333,12 @@ section {
     cursor: pointer;
     align-items: center;
     gap: 0.625rem;
+    white-space: nowrap; /* ← AJOUTER CETTE LIGNE */
   }
   .mobile-menu-btn svg {
     width: 1.25rem;
     height: 1.25rem;
+    flex-shrink: 0; /* ← AJOUTER CETTE LIGNE aussi */
   }
   .content-maps {
     display: none;
