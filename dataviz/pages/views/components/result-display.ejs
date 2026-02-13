@@ -47,7 +47,6 @@
                     ods-adv-analysis-group-by="liste">
                     {{ voteParticipation[0].participation | number:2 }} %
                 </span>
-                </span>
                 <span class="lbl-main">Participation</span>
             </div>
 
@@ -135,7 +134,7 @@
                     ods-adv-analysis-group-by="liste">
                     <div class="progress-track">
                         <div class="progress-bar c-1" 
-                            style="width: {{ (candidat.nombre / votesExprimes[0].total_votes_exprimes) * 100 }}%">
+                            ng-style="{'width': ((candidat.nombre / votesExprimes[0].total_votes_exprimes) * 100) + '%'}">
                         </div>
                     </div>
                     
