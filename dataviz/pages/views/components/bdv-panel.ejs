@@ -4,18 +4,21 @@
     <!-- Lister les lieux de votes -->
      <ul class="filter-list"
         ods-adv-analysis="bureaux"
-        ods-adv-analysis-context="resultatsmunicipales2026"
+        ods-adv-analysis-context="ctx"
         ods-adv-analysis-select="num_bureau, nom_bureau"
         ods-adv-analysis-group-by="num_bureau, nom_bureau">
-        <li class="filter-item" ng-if="resultatsmunicipales2026.parameters['refine.num_bureau']" ng-click="resultatsmunicipales2026.parameters = {'sort':'-num_bureau'}">
+        <li class="filter-item" ng-click="resultatsmunicipales2026.parameters = {'sort':'-num_bureau'}; bureauxdevoteelectoraux2026.parameters = {'sort':'-num_bureau'}">
             <span class="station-num" style="background:var(--text-dark); color:white;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
-            Clear filter 
+            &nbsp; <strong>Tout voir</strong>
         </li>
-        <li class="filter-item" ng-repeat="bureau in bureaux">
-            <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau">
-                <span class="station-num">{{ bureau.num_bureau }}</span> 
-                &nbsp; <span class="station-num-texte">{{ bureau.nom_bureau | uppercase }}</span>
-            </span>
-        </li>
+        <!-- Afficher les bureaux de votes -->
+        <span ng-repeat="bureau in bureaux">
+            <li class="{{ bureau.num_bureau == resultatsmunicipales2026.parameters['refine.num_bureau'] ? 'filter-item-active' : 'filter-item'}}">
+                <span ng-click="resultatsmunicipales2026.parameters['refine.num_bureau'] = bureau.num_bureau; bureauxdevoteelectoraux2026.parameters['refine.num_bureau'] = bureau.num_bureau">
+                    <span class="{{ bureau.num_bureau == resultatsmunicipales2026.parameters['refine.num_bureau'] ? 'station-num-active' : 'station-num'}}">{{ bureau.num_bureau }}</span> 
+                    &nbsp; <span class="station-num-texte">{{ bureau.nom_bureau | uppercase }}</span>
+                </span>
+            </li>
+        </span>
     </ul>
 </div>

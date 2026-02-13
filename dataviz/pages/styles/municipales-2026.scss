@@ -1,3 +1,6 @@
+// ============================================
+// VARIABLES
+// ============================================
 :root {
     --green-primary: rgb(101, 167, 11);
     --green-dark: rgb(71, 125, 40);
@@ -14,47 +17,18 @@
     --col-6: #636e72;
 }
 
+// ============================================
+// RESET
+// ============================================
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.result-detailed {
-    display: grid;
-    grid-template-columns: minmax(200px, 1fr) minmax(400px, 3fr) minmax(250px, 1.5fr);
-    gap: 0;
-    height: calc(100vh - 80px); // Ajuste selon la hauteur de ton header
-    width: 100%;
-    overflow: hidden; // Pas de scroll sur le container
-    
-    .sidebar {
-        overflow-y: auto;
-        overflow-x: hidden;
-        height: 100%;
-    }
-    
-    .map {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        
-        // Pour Leaflet
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-    }
-    
-    .detail-panel {
-        overflow-y: auto;
-        overflow-x: hidden;
-        height: 100%;
-        // padding: 1rem;
-    }
-}
-
-// Sur le container parent aussi
+// ============================================
+// LAYOUT CONTAINERS
+// ============================================
 .container-fluid {
     height: 100vh;
     overflow: hidden;
@@ -62,37 +36,48 @@
     margin: 0;
 }
 
+.result-detailed {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(400px, 3fr) minmax(250px, 1.5fr);
+    gap: 0;
+    height: calc(100vh - 80px);
+    width: 100%;
+    overflow: hidden;
+}
 
-// Partie header
+// ============================================
+// HEADER
+// ============================================
 .app-header {
-    // Paramétrage de la box
     width: 100%;
     background: var(--white);
     padding: 15px 25px;
     border-bottom: 1px solid var(--border);
+    border-top: 4px solid var(--green-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     z-index: 20;
-    border-top: 4px solid var(--green-dark);
     flex-shrink: 0;
 
-    // Paramétrage du titre
     .app-title {
         color: var(--green-dark);
         font-weight: bolder;
     }
 }
 
+// ============================================
+// SIDEBAR
+// ============================================
 .sidebar {
-    // width: 320px;
     background: var(--white);
     border-right: 1px solid var(--border);
     padding: 20px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
     flex-shrink: 0;
     height: 100%;
 }
@@ -124,7 +109,37 @@
     align-items: center;
     transition: 0.2s;
     background-color: var(--white);
+
+    &:hover {
+        color: var(--green-primary);
+        background-color: #fcfcfc;
+    }
+
+    &.active {
+        font-weight: 700;
+        color: var(--green-dark);
+        border-left: 4px solid var(--green-primary);
+        padding-left: 10px;
+        background-color: #f9fcf5;
+    }
 }
+.filter-item-active {
+    padding: 12px 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+
+    font-weight: 700;
+    color: var(--green-dark);
+    border-left: 4px solid var(--green-primary);
+    padding-left: 10px;
+    background-color: #f9fcf5;
+}
+
 
 .station-num {
     display: inline-flex;
@@ -137,13 +152,43 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    margin-right: 10px;
+    // margin-right: 10px;
     flex-shrink: 0;
 }
 
-// Partie affichage des résultats
+.station-num-active {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-primary);
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    // margin-right: 10px;
+    flex-shrink: 0;
+}
+
+// ============================================
+// MAP
+// ============================================
+.map {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    #map {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+// ============================================
+// DETAIL PANEL
+// ============================================
 .detail-panel {
-    // width: 420px;
     background: var(--white);
     border-left: 1px solid var(--border);
     box-shadow: -2px 0 15px rgba(0, 0, 0, 0.05);
@@ -151,19 +196,21 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
 
     .panel-header {
         background: var(--green-primary);
-        color: white;
+        color: var(--white);
         padding: 20px;
-        
+
         .panel-context {
             font-size: 11px;
             text-transform: uppercase;
             opacity: 0.9;
             letter-spacing: 1px;
         }
-        
+
         .panel-title {
             font-size: 20px;
             font-weight: 500;
@@ -171,83 +218,83 @@
             line-height: 1.3;
             color: var(--white);
         }
-
     }
-    
+
     .panel-body {
         padding: 20px;
-        
-        .stats-grid-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 10px;
-            
-            .stat-card-main {
-                background: #f0fdf4;
-                padding: 10px 5px;
-                border-radius: 6px;
-                text-align: center;
-                border: 1px solid #dcfce7;
-
-                .val-main {
-                    font-size: 16px;
-                    font-weight: 700;
-                    color: var(--green-dark);
-                    display: block;
-                }
-
-                .lbl-main {
-                    font-size: 10px;
-                    color: var(--text-dark);
-                    text-transform: uppercase;
-                    margin-top: 4px;
-                    display: block;
-                }
-            }
-        }
-        
-        .stats-grid-sub {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-            
-            .stat-card-sub {
-                background: #f9f9f9;
-                padding: 8px 4px;
-                border-radius: 4px;
-                text-align: center;
-                border: 1px solid #eee;
-
-                .val-sub {
-                    font-size: 14px;
-                    font-weight: 700;
-                    color: #444;
-                    display: block;
-                }
-
-                .lbl-sub {
-                    font-size: 9px;
-                    color: #888;
-                    text-transform: uppercase;
-                    margin-top: 3px;
-                    display: block;
-                }
-            } 
-            
-            .res-item {
-                margin-bottom: 12px;
-
-
-                
-            }
-        }
-        
     }
-    
+}
+
+// ============================================
+// STATS GRIDS
+// ============================================
+.stats-grid-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.stat-card-main {
+    background: #f0fdf4;
+    padding: 10px 5px;
+    border-radius: 6px;
+    border: 1px solid #dcfce7;
+    text-align: center;
+
+    .val-main {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--green-dark);
+        display: block;
+    }
+
+    .lbl-main {
+        font-size: 10px;
+        color: var(--text-dark);
+        text-transform: uppercase;
+        margin-top: 4px;
+        display: block;
+    }
+}
+
+.stats-grid-sub {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-card-sub {
+    background: #f9f9f9;
+    padding: 8px 4px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    text-align: center;
+
+    .val-sub {
+        font-size: 14px;
+        font-weight: 700;
+        color: #444;
+        display: block;
+    }
+
+    .lbl-sub {
+        font-size: 9px;
+        color: #888;
+        text-transform: uppercase;
+        margin-top: 3px;
+        display: block;
+    }
+}
+
+// ============================================
+// RESULT ITEMS
+// ============================================
+.res-item {
+    margin-bottom: 12px;
 }
 
 .res-header {
@@ -261,7 +308,9 @@
     }
 }
 
-// Problème
+// ============================================
+// PROGRESS BARS
+// ============================================
 .progress-track {
     height: 10px;
     background: #eee;
@@ -277,20 +326,4 @@
 
 .c-1 {
     background: var(--col-0);
-}
-
-.filter-item {
-    padding: 12px 5px; border-bottom: 1px solid #eee;
-    font-size: 13px; color: var(--text-dark); cursor: pointer;
-    display: flex; align-items: center; transition: 0.2s;
-}
-.filter-item:hover { 
-    color: var(--green-primary); 
-    background-color: #fcfcfc; 
-}
-
-.filter-item.active { 
-    font-weight: 700; color: var(--green-dark); 
-    border-left: 4px solid var(--green-primary); padding-left: 10px; 
-    background-color: #f9fcf5;
 }
